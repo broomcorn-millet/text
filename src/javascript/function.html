@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="demo"></p>
+<script>
+    //function
+    var x=myf(7,8);
+    document.getElementById("demo").innerHTML=x;
+    function myf(a,b){
+        return a*b;
+    }
+</script>
+<script>
+    var person={
+        firstname:"bill",
+        lastname:"gates",
+        id:678,
+        fullname:function () {
+            return this.firstname+this.lastname;
+        }
+    }
+    document.getElementById("demo").innerHTML=person.fullname();
+</script>
+</body>
+</html>

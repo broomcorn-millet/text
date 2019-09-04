@@ -1,0 +1,21 @@
+端口监听　模拟接发报
+
+telnet www.baidu.com 80
+telnet localhost 9999
+GET / HTTP/1.1
+Host: localhost:9999
+Connection: keep-alive
+
+
+nc -l 9999
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Cache-Control: private, no-cache, no-store, proxy-revalidate, no-transform
+Connection: Keep-Alive
+
+<!DOCTYPE html>
+<!--STATUS OK--><html> <head></head>
+<body>
+<input type=submit id=su value=百度一下
+</body> </html>
+
