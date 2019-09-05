@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+    <!--配置单例的集合bean,以供多个bean进行引用，需要导入util命名空间-->
+    <util:list id="list">
+        <ref bean="car2"></ref>
+        <ref bean="car1"></ref>
+        <bean id="person4" class="Person">
+            <property name="name" value="jack"></property>
+            <property name="age" value="29"></property>
+            <!--<property name="cars" ref="cars"></property>-->
+        </bean>
+    </util:list>
+    <bean id="HelloWord" class="HelloWord">
+        <property name="name" value="spring"></property>
+    </bean>
+
+
+   <!-- 通过构造方法来配置的属性-->
+    <!--入字面值包括特殊字符可以使用<![CDATA[]]>包裹起来-->
+    <bean id="car1" class="Car">
+        <constructor-arg index="0" value="大众" >
+            <!--<value><![CDATA[<Audi>]]></value>-->
+        </constructor-arg>
+        <constructor-arg index="1" value="Shanghai"/>
+        <constructor-arg index="2" value="30000" type="double"/>
+    </bean>
+    <!--使用构造器注入属性值可以指定参数的位置和参数的类型！以区分重载的构造器-->
+    <bean id="car2" class="Car">
+
+        <constructor-arg index="0" type="java.lang.String" value="宝马" />
+        <constructor-arg index="1" type="java.lang.String" value="广州"/>
+        <constructor-arg index="2" type="int" value="1000"/>
+    </bean>
+
+    <bean id="person" class="Person">
+        <!--可以使用property的ref属性建立bean之间的引用关系-->
+        <!--<property name="car" ref="car2"></property>-->
+        <!--<property name="car">-->
+            <!--<ref bean="car2"></ref>-->
+        <!--</property>-->
+        <!--内部bean不能被外部引用只能在内部使用-->
+        <!--<property name="car">-->
+            <!--<bean class="Car">-->
+                <!--<constructor-arg index="0" type="java.lang.String" value="宾利"/>-->
+                <!--<constructor-arg index="1" type="java.lang.String" value="深圳"/>-->
+                <!--<constructor-arg index="2" type="double" value="10000"/>-->
+            <!--</bean>-->
+        <!--</property>-->
+        <!--测试null值<null>-->
+        <property name="age" value="10"></property>
+        <property name="name" value="张三"></property>
+
+
+    </bean>
+    <bean id="person2"  class="Person">
+       <constructor-arg value="jerry"></constructor-arg>
+        <constructor-arg value="25"></constructor-arg>
+        <constructor-arg><null/></constructor-arg>
+    </bean>
+
+    <bean id="datasource" class="datasource">
+        <property name="properties" >
+            <props>
+                <prop key="user">root</prop>
+                <prop key="password">1234</prop>
+                <prop key="jdbcUrl">jdbc:mysql</prop>
+                <prop key="driverClass">com.mysql.jdbc.driver</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

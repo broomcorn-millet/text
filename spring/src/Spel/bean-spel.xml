@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id="address" class="Spel.address">
+    <property name="diqu" value="#{'beijing'}"></property>
+    <property name="street" value="wudaokou"></property>
+
+</bean>
+    <bean id="car" class="Spel.car" p:brand="autuo" p:price="500000" p:typePerimeter="#{T(java.lang.Math).PI*50}"></bean>
+    <bean id="person" class="Spel.person" p:car="#{car}" p:city="#{address.diqu}" p:name="悠亚" p:info="#{car.price>300000?'金额':'白领'}"></bean>
+</beans>
